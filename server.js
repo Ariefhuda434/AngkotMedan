@@ -10,7 +10,23 @@ const MIME = {
 };
 
 http.createServer((req, res) => {
-  let filePath = path.join(__dirname, req.url.split('?')[0]);
+  const cleanPath = req.url.split('?')[0];
+  const routeMap = {
+    '/tentang': '/tentang.html',
+    '/semua-trayek': '/semua-trayek.html',
+  };
+
+  let resolvedPath = cleanPath;
+  if (routeMap[cleanPath]) {
+    resolvedPath = routeMap[cleanPath];
+  } else if (cleanPath.endsWith('/')) {
+    const withoutSlash = cleanPath.slice(0, -1);
+    if (routeMap[withoutSlash]) {
+      resolvedPath = routeMap[withoutSlash];
+    }
+  }
+
+  let filePath = path.join(__dirname, resolvedPath);
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
     const ext = path.extname(filePath);
     res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
