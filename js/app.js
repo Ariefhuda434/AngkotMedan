@@ -1380,7 +1380,7 @@ function renderResults() {
       </div>
     `;
     container.innerHTML = html;
-    lucide.createIcons();
+    safeCreateIcons();
     return;
   }
 
@@ -1428,7 +1428,7 @@ function renderResults() {
   html += renderPublicTransportSection(pubTransport, origin, destination);
 
   container.innerHTML = html;
-  lucide.createIcons();
+  safeCreateIcons();
   applyLang(currentLang);
   requestAnimationFrame(() => {
     renderAllMaps();
@@ -2376,7 +2376,7 @@ function renderRouteExplorer() {
   });
 
   renderExplorerPagination(totalPages);
-  lucide.createIcons();
+  safeCreateIcons();
 }
 
 function renderExplorerPagination(totalPages) {
@@ -2402,7 +2402,7 @@ function renderExplorerPagination(totalPages) {
   html += `<button class="page-btn px-3 py-1.5 border-2 border-[#000000]/20 font-display text-xs font-bold ${explorerPage === totalPages ? 'text-[#000000]/20 cursor-not-allowed' : 'text-[#000000] hover:bg-mustard/10 hover:border-[#000000]'} transition-all" data-page="${explorerPage + 1}" ${explorerPage === totalPages ? 'disabled' : ''}><i data-lucide="chevron-right" class="w-3.5 h-3.5 inline"></i></button>`;
 
   el.innerHTML = html;
-  lucide.createIcons();
+  safeCreateIcons();
   el.querySelectorAll(".page-btn:not([disabled])").forEach(btn => {
     btn.addEventListener("click", () => {
       explorerPage = parseInt(btn.dataset.page);
@@ -2516,7 +2516,7 @@ function openRouteDetail(route) {
   `;
 
   modal.classList.remove("hidden");
-  lucide.createIcons();
+  safeCreateIcons();
 
   requestAnimationFrame(() => {
     const modalMapEl = document.getElementById("modal-map");
@@ -2786,12 +2786,28 @@ function initMarquee() {
   el.innerHTML = content + content + content + content;
 }
 
+function safeInit(fn, label) {
+  try {
+    fn();
+  } catch (e) {
+    console.error(`[initApp] ${label} failed:`, e);
+  }
+}
+
+function safeCreateIcons() {
+  try {
+    if (typeof lucide !== "undefined") lucide.createIcons();
+  } catch (e) {
+    console.error("[safeCreateIcons] failed:", e);
+  }
+}
+
 function initApp() {
-  lucide.createIcons();
-  initMarquee();
-  applyLang(currentLang);
-  renderPopularRoutes();
-  initTracking();
+  safeInit(safeCreateIcons, "lucide.createIcons");
+  safeInit(initMarquee, "initMarquee");
+  safeInit(() => applyLang(currentLang), "applyLang");
+  safeInit(renderPopularRoutes, "renderPopularRoutes");
+  safeInit(initTracking, "initTracking");
 
   const langToggle = document.getElementById('lang-toggle');
   const langDropdown = document.getElementById('lang-dropdown');
