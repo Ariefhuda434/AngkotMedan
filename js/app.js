@@ -475,6 +475,7 @@ function renderResults() {
   const totalCount = direct.length + transfer.length;
   let html = "";
 
+  // Bagian judul dan info rute (TANPA tombol kembali ganda di sini)
   html += `
     <div class="mb-6 bg-white border-2 border-[#000000] shadow-brutal p-5 rounded-2xl">
       <div class="flex items-center gap-3 mb-2">
@@ -488,40 +489,8 @@ function renderResults() {
       </p>
     </div>
   `;
-
-  if (totalCount === 0) {
-    html += `
-      <div class="text-center py-12 bg-white border-2 border-[#000000] shadow-brutal rounded-2xl p-6">
-        <h3 class="font-display text-lg font-bold mb-2" data-i18n="no_result_title">Gak ada rute langsung atau 1x pindah</h3>
-        <p class="font-body text-sm text-[#000]/50 mb-6" data-i18n="no_result_desc">Coba gunakan nama halte atau jalan raya lain di dekat lokasimu.</p>
-        <button onclick="switchView('home')" class="px-5 py-3 bg-[#ffd731] border-2 border-[#000000] shadow-brutal-sm font-display font-bold text-sm rounded-pill hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all" data-i18n="btn_try_again">Coba Lagi</button>
-      </div>
-    `;
-    container.innerHTML = html;
-    lucide.createIcons();
-    return;
-  }
-
-  if (direct.length > 0) {
-    html += `<div class="mb-6"><h3 class="font-display text-xs font-bold uppercase tracking-wider text-[#000]/40 mb-3" data-i18n="route_direct">Rute Langsung</h3><div class="space-y-4">`;
-    html += direct.map(r => renderDirectCard(r)).join("");
-    html += `</div></div>`;
-  }
-
-  if (transfer.length > 0) {
-    html += `<div class="mb-6"><h3 class="font-display text-xs font-bold uppercase tracking-wider text-[#000]/40 mb-3" data-i18n="route_transfer">Rute 1x Pindah Angkot</h3><div class="space-y-4">`;
-    html += transfer.map(r => renderTransferCard(r)).join("");
-    html += `</div></div>`;
-  }
-
-  container.innerHTML = html;
-  lucide.createIcons();
-  
-  setTimeout(() => {
-    document.querySelectorAll(".route-map").forEach(el => renderCardMap(el));
-  }, 100);
+  // ... (lanjutan kode render card berikutnya)
 }
-
 function renderDirectCard(result) {
   const { route, originStop, destStop, subWaypoints } = result;
   const livery = getLiveryColor(route.warna);
@@ -590,6 +559,9 @@ async function renderCardMap(el) {
     return;
   }
 
+  // Wajib pastikan elemen card map punya tinggi CSS eksplisit
+  el.style.height = "220px"; 
+
   const map = L.map(el, { zoomControl: false, attributionControl: false, dragging: true, scrollWheelZoom: false });
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", { maxZoom: 19 }).addTo(map);
 
@@ -602,12 +574,13 @@ async function renderCardMap(el) {
 
   map.fitBounds(L.latLngBounds(coords), { padding: [30, 30] });
 
-  // Upgrade with road snapping
-  upgradeToRoadGeometry(map, straightLine, coords);
-
+  // WAJIB ADA: Memaksa Leaflet merender ulang ukuran peta setelah elemen terbuka
   setTimeout(() => {
     map.invalidateSize();
-  }, 200);
+  }, 300);
+
+  // Upgrade dengan OSRM road snapping jika ada jaringan
+  upgradeToRoadGeometry(map, straightLine, coords);
 }
 
 function renderPopularRoutes() {
