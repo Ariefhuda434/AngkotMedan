@@ -395,7 +395,32 @@ input:focus, button:focus-visible {
   .gojek-pin, .gojek-marker {
     transform: scale(0.85);
   }
+  .result-card .route-header { padding: 0.75rem 1rem; }
+  .result-card .route-body { padding: 0.75rem 1rem; }
+  .result-card .route-stops { padding: 0.75rem 1rem; }
+  .gojek-route-badge { font-size: 9px; padding: 1px 5px; }
+  .font-display.text-3xl { font-size: 1.5rem; }
+  .hero-stats { gap: 0.75rem !important; }
 }
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .font-display { letter-spacing: -0.01em; }
+  .slush-marquee .marquee-track { animation-duration: 20s; }
+  .route-card .route-body .ml-8 { margin-left: 1.5rem; }
+  .gojek-route-badge { font-size: 8px; padding: 1px 4px; }
+  .nav-link { padding: 0.25rem 0.375rem; }
+}
+
+/* Medium screens - tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .route-map, .route-map-multi {
+    height: 200px !important;
+  }
+}
+
+/* Prevent body overflow on mobile */
+body { overflow-x: hidden; }
 
 /* Touch-friendly tap targets */
 @media (pointer: coarse) {
@@ -403,7 +428,7 @@ input:focus, button:focus-visible {
     min-height: 44px;
   }
   .nav-link {
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.625rem;
   }
 }
 
@@ -411,6 +436,9 @@ input:focus, button:focus-visible {
 @supports (padding: env(safe-area-inset-bottom)) {
   footer {
     padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+  [data-view="tracking"] .absolute.bottom-0 {
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
   }
 }
 
@@ -538,3 +566,7 @@ input:focus, button:focus-visible {
 /* --- Route card map fixes --- */
 .route-map, .route-map-multi { position: relative; }
 .route-map .leaflet-control, .route-map-multi .leaflet-control { z-index: 400 !important; }
+
+/* Force all Leaflet maps to stay inside their container */
+.leaflet-container { max-width: 100%; }
+#modal-map, .route-map, .route-map-multi, #tracking-map { max-width: 100%; overflow: hidden; }

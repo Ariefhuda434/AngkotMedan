@@ -1502,9 +1502,9 @@ function renderDirectCard(result) {
   return `
     <div class="route-card bg-white border-2 border-[#000000] shadow-brutal overflow-hidden ${bestMatch ? 'ring-2 ring-[#55db9c] ring-offset-1' : ''}">
       <!-- Route Header -->
-      <div class="p-5 pb-0">
-        <div class="flex items-start gap-3 mb-4">
-          <div class="flex items-center justify-center min-w-[3rem] h-12 rounded-lg ${livery.bg} ${livery.text} border-2 border-[#000000] font-display font-black text-base shadow-brutal-sm shrink-0">
+      <div class="p-4 sm:p-5 pb-0">
+        <div class="flex items-start gap-2 sm:gap-3 mb-4">
+          <div class="flex items-center justify-center min-w-[2.75rem] sm:min-w-[3rem] h-10 sm:h-12 rounded-lg ${livery.bg} ${livery.text} border-2 border-[#000000] font-display font-black text-sm sm:text-base shadow-brutal-sm shrink-0">
             ${route.nomor}
           </div>
           <div class="flex-1 min-w-0">
@@ -1525,13 +1525,13 @@ function renderDirectCard(result) {
       </div>
 
       <!-- Map -->
-      <div class="route-map mx-5 mb-0 border-2 border-[#000000] rounded-xl overflow-hidden shadow-[3px_3px_0_#000000]" style="height:220px;"
+      <div class="route-map mx-3 sm:mx-5 mb-0 border-2 border-[#000000] rounded-xl overflow-hidden shadow-[3px_3px_0_#000000] max-w-full" style="height:220px;"
            data-route='${JSON.stringify(route.waypoints)}' data-origin="${originStop}" data-dest="${destStop}"
            data-color="${livery.hex}" data-nomor="${route.nomor}"></div>
 
       <!-- Narrative -->
-      <div class="p-5">
-        <div class="bg-[#f0f7ff] border border-[#000000]/10 rounded-lg p-4 mb-4">
+      <div class="p-4 sm:p-5">
+        <div class="bg-[#f0f7ff] border border-[#000000]/10 rounded-lg p-3 sm:p-4 mb-4">
           <p class="font-body text-sm text-[#000000]/70 leading-relaxed">${narrative}</p>
         </div>
 
@@ -1578,35 +1578,35 @@ function renderTransferCard(result) {
   return `
     <div class="route-card bg-white border-2 border-[#000000] shadow-brutal overflow-hidden ${bestMatch ? 'ring-2 ring-[#55db9c] ring-offset-1' : ''}">
       <!-- Route Header -->
-      <div class="p-5 pb-0">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="flex items-center justify-center w-11 h-11 rounded-lg ${livery1.bg} ${livery1.text} border-2 border-[#000000] font-display font-bold text-sm shadow-brutal-sm shrink-0">
+      <div class="p-4 sm:p-5 pb-0">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-4">
+          <div class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-lg ${livery1.bg} ${livery1.text} border-2 border-[#000000] font-display font-bold text-sm shadow-brutal-sm shrink-0">
             ${leg1.route.nomor}
           </div>
-          <div class="flex items-center gap-1.5">
-            <div class="w-5 h-0.5 bg-[#000000]/20"></div>
-            <div class="w-6 h-6 rounded-full bg-navy text-white flex items-center justify-center border-2 border-[#000000] shadow-brutal-sm">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <div class="w-4 sm:w-5 h-0.5 bg-[#000000]/20"></div>
+            <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-navy text-white flex items-center justify-center border-2 border-[#000000] shadow-brutal-sm">
               <i data-lucide="repeat" class="w-2.5 h-2.5"></i>
             </div>
-            <div class="w-5 h-0.5 bg-[#000000]/20"></div>
+            <div class="w-4 sm:w-5 h-0.5 bg-[#000000]/20"></div>
           </div>
-          <div class="flex items-center justify-center w-11 h-11 rounded-lg ${livery2.bg} ${livery2.text} border-2 border-[#000000] font-display font-bold text-sm shadow-brutal-sm shrink-0">
+          <div class="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-lg ${livery2.bg} ${livery2.text} border-2 border-[#000000] font-display font-bold text-sm shadow-brutal-sm shrink-0">
             ${leg2.route.nomor}
           </div>
-          <span class="ml-auto text-[10px] font-display font-bold text-navy bg-navy/10 px-2 py-1 rounded border border-navy/20">1 Kali Pindah</span>
-          ${bestMatch ? '<span class="text-[10px] font-display font-bold bg-[#55db9c] text-white px-2 py-1 rounded flex items-center gap-1"><i data-lucide="trophy" class="w-3 h-3"></i>Terbaik</span>' : ''}
+          <span class="text-[10px] font-display font-bold text-navy bg-navy/10 px-2 py-1 rounded border border-navy/20 shrink-0">1 Kali Pindah</span>
+          ${bestMatch ? '<span class="text-[10px] font-display font-bold bg-[#55db9c] text-white px-2 py-1 rounded flex items-center gap-1 shrink-0"><i data-lucide="trophy" class="w-3 h-3"></i>Terbaik</span>' : ''}
         </div>
       </div>
 
       <!-- Map -->
-      <div class="route-map mx-5 mb-0 border-2 border-[#000000] rounded-xl overflow-hidden shadow-[3px_3px_0_#000000]" style="height:220px;"
+      <div class="route-map mx-3 sm:mx-5 mb-0 border-2 border-[#000000] rounded-xl overflow-hidden shadow-[3px_3px_0_#000000] max-w-full" style="height:220px;"
            data-leg1='${JSON.stringify(leg1.route.waypoints)}' data-leg2='${JSON.stringify(leg2.route.waypoints)}'
            data-origin="${leg1.originStop}" data-transfer="${transferStop}" data-dest="${leg2.destStop}"
            data-color1="${livery1.hex}" data-color2="${livery2.hex}"
            data-nomor1="${leg1.route.nomor}" data-nomor2="${leg2.route.nomor}"></div>
 
       <!-- Narrative & Timeline -->
-      <div class="p-5">
+      <div class="p-4 sm:p-5">
         <!-- Step 1 -->
         <div class="mb-4">
           <div class="flex items-center gap-2 mb-2">
@@ -1774,12 +1774,12 @@ function renderMultiTransferCard(result) {
       </div>
 
       <!-- Map -->
-      <div class="route-map-multi mx-5 mb-0 border-2 border-[#000000] rounded-xl overflow-hidden shadow-[3px_3px_0_#000000]" style="height:220px;"
+      <div class="route-map-multi mx-3 sm:mx-5 mb-0 border-2 border-[#000000] rounded-xl overflow-hidden shadow-[3px_3px_0_#000000] max-w-full" style="height:220px;"
            data-legs='${JSON.stringify(legs.map((leg, i) => ({ waypoints: leg.route.waypoints, originStop: leg.originStop, destStop: leg.destStop, color: colors[i] })))}'
            data-origin="${originStop}" data-dest="${destStop}"></div>
 
       <!-- Narratives -->
-      <div class="p-5">
+      <div class="p-4 sm:p-5">
         ${legs.map((leg, i) => {
           const livery = getLiveryColor(leg.route.warna);
           return `
@@ -2137,21 +2137,38 @@ async function renderMultiTransferMap(el) {
 
   addMapLegend(map, 'multi');
 
+  // Origin pin (green)
   const originCoord = getStopCoords(origin);
   if (originCoord) {
-    L.circleMarker(originCoord, { radius: 8, color: "#000000", fillColor: "#55db9c", fillOpacity: 1, weight: 2.5 })
-      .bindTooltip(`<b>${origin}</b><br><small>Naik di sini</small>`, { permanent: false, direction: "top", className: "brutalist-tooltip" }).addTo(map);
+    L.marker(originCoord, { icon: gojekPinIcon("#55db9c", "A") })
+      .bindTooltip(`<b>${origin}</b><br><small>Naik di sini</small>`, { direction: "top", className: "brutalist-tooltip" })
+      .addTo(map);
   }
+  // Dest pin (red)
   const destCoord = getStopCoords(dest);
   if (destCoord) {
-    L.circleMarker(destCoord, { radius: 8, color: "#000000", fillColor: "#fb4903", fillOpacity: 1, weight: 2.5 })
-      .bindTooltip(`<b>${dest}</b><br><small>Turun di sini</small>`, { permanent: false, direction: "top", className: "brutalist-tooltip" }).addTo(map);
+    L.marker(destCoord, { icon: gojekPinIcon("#fb4903", "B") })
+      .bindTooltip(`<b>${dest}</b><br><small>Turun di sini</small>`, { direction: "top", className: "brutalist-tooltip" })
+      .addTo(map);
   }
+  // Transfer markers
   legsData.forEach((leg, li) => {
     const transferCoord = getStopCoords(leg.destStop);
     if (transferCoord && li < legsData.length - 1) {
-      L.circleMarker(transferCoord, { radius: 7, color: "#000000", fillColor: "#ffd731", fillOpacity: 1, weight: 2 })
-        .bindTooltip(`<b>${leg.destStop}</b><br><small>Pindah angkot</small>`, { permanent: false, direction: "top", className: "brutalist-tooltip" }).addTo(map);
+      L.marker(transferCoord, { icon: gojekTransferIcon() })
+        .bindTooltip(`<b>${leg.destStop}</b><br><small>Pindah angkot</small>`, { direction: "top", className: "brutalist-tooltip" })
+        .addTo(map);
+    }
+  });
+
+  // Route badges at midpoints
+  legsData.forEach((leg, li) => {
+    const coords = leg.waypoints.map(w => getStopCoords(w)).filter(Boolean);
+    if (coords.length >= 2) {
+      const midIdx = Math.floor(coords.length / 2);
+      const livery = getLiveryColor(leg.route.warna);
+      const badgeColor = livery.hex === "#FFFFFF" ? "#000000" : livery.hex;
+      L.marker(coords[midIdx], { icon: gojekRouteBadge(leg.route.nomor) }).addTo(map);
     }
   });
 
@@ -2455,7 +2472,7 @@ function openRouteDetail(route) {
   }).join('');
 
   content.innerHTML = `
-    <div class="p-6 pb-4">
+    <div class="p-4 sm:p-6 pb-4">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-14 h-14 rounded-xl ${livery.bg} ${livery.text} border-2 border-[#000000] font-display font-black text-lg flex items-center justify-center shadow-brutal shrink-0">
           ${route.nomor}
@@ -2479,7 +2496,7 @@ function openRouteDetail(route) {
           <p class="font-body text-[10px] text-[#000000]/40 mt-0.5">menit</p>
         </div>
       </div>
-      <div id="modal-map" class="w-full h-48 border-2 border-[#000000] shadow-brutal-sm rounded-xl overflow-hidden mb-5"></div>
+      <div id="modal-map" class="w-full h-44 sm:h-48 border-2 border-[#000000] shadow-brutal-sm rounded-xl overflow-hidden mb-5 max-w-full"></div>
       <div class="flex items-center gap-2 mb-3">
         <div class="w-6 h-6 bg-mustard border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center">
           <i data-lucide="route" class="w-3 h-3 text-[#000000]"></i>
@@ -2522,6 +2539,7 @@ function openRouteDetail(route) {
       });
       modalMap.fitBounds(validCoords, { padding: [30, 30] });
     }
+    setTimeout(() => { modalMap.invalidateSize(); }, 100);
   });
 }
 

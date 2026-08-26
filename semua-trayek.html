@@ -67,17 +67,17 @@
   <!-- NAVBAR -->
   <nav class="sticky top-0 z-50 bg-[#ffffff]/95 backdrop-blur-sm border-b-2 border-[#000000]">
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-1.5 group">
-        <img src="logo.png" alt="Angkot Medan" class="w-20 h-20 object-contain" />
+      <a href="/" class="flex items-center gap-1.5 group shrink-0">
+        <img src="logo.png" alt="Angkot Medan" class="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain" />
         <div class="hidden sm:block">
           <p class="font-display font-bold text-sm leading-none tracking-tight text-[#000000]">Angkot<span class="text-[#ffd731]">Medan</span></p>
           <p class="font-body text-[10px] text-[#000]/40 leading-none mt-0.5 tracking-wide">FINDER</p>
         </div>
       </a>
-      <div class="flex items-center gap-1">
-        <span class="inline-flex items-center px-3 py-1 bg-[#4da2ff]/15 text-[#4da2ff] font-display font-bold text-[11px] border-2 border-[#4da2ff]/30 mr-3 rounded-pill">118</span>
-        <a href="/" class="nav-link px-3 py-1.5 font-display text-sm font-medium text-[#000]/50 hover:text-[#000000] transition-colors relative" data-i18n="nav_home">Beranda</a>
-        <a href="/tentang" class="nav-link px-3 py-1.5 font-display text-sm font-medium text-[#000]/50 hover:text-[#000000] transition-colors relative" data-i18n="nav_about">Tentang</a>
+      <div class="flex items-center gap-0.5 sm:gap-1">
+        <span class="hidden sm:inline-flex items-center px-3 py-1 bg-[#4da2ff]/15 text-[#4da2ff] font-display font-bold text-[11px] border-2 border-[#4da2ff]/30 mr-2 rounded-pill">118</span>
+        <a href="/" class="nav-link px-2 sm:px-3 py-1.5 font-display text-xs sm:text-sm font-medium text-[#000]/50 hover:text-[#000000] transition-colors relative" data-i18n="nav_home">Beranda</a>
+        <a href="/tentang" class="nav-link px-2 sm:px-3 py-1.5 font-display text-xs sm:text-sm font-medium text-[#000]/50 hover:text-[#000000] transition-colors relative" data-i18n="nav_about">Tentang</a>
         <div class="relative ml-1">
           <button id="lang-toggle" class="flex items-center gap-1 px-2 py-1.5 rounded-lg border-2 border-[#000]/10 hover:border-[#000000] hover:bg-[#ffd731]/10 transition-all font-display text-xs font-bold text-[#000]/50">
             <i data-lucide="globe" class="w-3.5 h-3.5"></i>
@@ -119,9 +119,9 @@
               <input type="text" id="explorer-search" class="w-full pl-10 pr-4 py-3 bg-[#dceeff] border-2 border-[#000]/8 rounded-xl font-body text-sm focus:outline-none focus:border-[#4da2ff] focus:shadow-brutal-sm transition-all" placeholder="Cari nomor trayek atau nama operator..." data-i18n-placeholder="explorer_search">
             </div>
           </div>
-          <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#000]/8">
-            <p class="font-body text-xs text-[#000]/40" id="explorer-count"></p>
-            <div class="flex gap-2">
+            <div class="flex flex-wrap items-center justify-between mt-3 pt-3 border-t border-[#000]/8 gap-2">
+              <p class="font-body text-xs text-[#000]/40" id="explorer-count"></p>
+              <div class="flex flex-wrap gap-1.5">
               <button class="explorer-filter-btn px-3 py-1 bg-[#ffd731] border-2 border-[#000]/10 font-display text-[10px] font-bold rounded-pill hover:border-[#000000] transition-all" data-filter="">Semua</button>
               <button class="explorer-filter-btn px-3 py-1 bg-[#ffd731]/30 border-2 border-[#000]/10 font-display text-[10px] font-bold rounded-pill hover:border-[#000000] transition-all" data-filter="kuning">Kuning</button>
               <button class="explorer-filter-btn px-3 py-1 bg-[#4da2ff]/30 border-2 border-[#000]/10 font-display text-[10px] font-bold rounded-pill hover:border-[#000000] transition-all" data-filter="biru">Biru</button>
@@ -141,7 +141,7 @@
       <!-- ROUTE DETAIL MODAL -->
       <div id="route-detail-modal" class="fixed inset-0 z-[2000] hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modal-backdrop"></div>
-        <div class="absolute inset-x-4 top-[5%] bottom-[5%] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[520px] bg-white border-2 border-[#000000] shadow-brutal-lg rounded-2xl overflow-y-auto">
+        <div class="absolute inset-0 sm:inset-x-4 sm:top-[5%] sm:bottom-[5%] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[520px] bg-white border-0 sm:border-2 border-[#000000] shadow-none sm:shadow-brutal-lg rounded-none sm:rounded-2xl overflow-y-auto">
           <div class="sticky top-0 bg-white border-b-2 border-[#000]/8 px-6 py-4 flex items-center justify-between z-10">
             <h3 class="font-display text-lg font-bold" id="modal-route-title">Rute</h3>
             <button id="modal-close" class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-[#000]/10 hover:border-[#fb4903] hover:bg-[#fb4903]/10 transition-all">
