@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4da2ff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Tentang — AngkotMedan</title>
+  <meta name="description" content="Tentang AngkotMedan Finder. Kenali masalah transit Medan, cara kerja, dan panduan warna livery angkot.">
+  <meta property="og:title" content="Tentang AngkotMedan — Angkot Medan Finder">
+  <meta property="og:description" content="Tentang AngkotMedan Finder. Kenali masalah transit Medan, cara kerja, dan panduan warna livery angkot.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/hero-angkot.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tentang AngkotMedan">
+  <meta name="twitter:description" content="Tentang AngkotMedan Finder. Kenali masalah transit Medan, cara kerja, dan panduan warna livery angkot.">
+  <meta name="twitter:image" content="img/hero-angkot.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234da2ff' stroke='%23000' stroke-width='2'/><rect x='4' y='11' width='24' height='11' rx='4' fill='%23000'/><rect x='6' y='13' width='7' height='6' rx='2' fill='%234da2ff'/><rect x='15' y='13' width='7' height='6' rx='2' fill='%234da2ff'/><circle cx='9' cy='23' r='2.5' fill='%23000'/><circle cx='23' cy='23' r='2.5' fill='%23000'/><circle cx='9' cy='23' r='1.2' fill='%234da2ff'/><circle cx='23' cy='23' r='1.2' fill='%234da2ff'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mustard: '#ffd731',
+            sunburst: '#ffd731',
+            navy: '#4da2ff',
+            'electric-blue': '#4da2ff',
+            'mint-pop': '#55db9c',
+            lavender: '#e9ccff',
+            ember: '#fb4903',
+            'voltage-violet': '#5c4ade',
+            asphalt: '#000000',
+            carbon: '#000000',
+            ivory: '#ffffff',
+            paper: '#ffffff',
+            'sky-wash': '#dceeff',
+            'concrete': '#cccccc',
+          },
+          fontFamily: {
+            display: ['"Bowlby One SC"', 'system-ui', 'sans-serif'],
+            body: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+          borderRadius: {
+            'pill': '9999px',
+          },
+          boxShadow: {
+            'brutal': '3px 3px 0px 0px #000000',
+            'brutal-sm': '2px 2px 0px 0px #000000',
+            'brutal-lg': '5px 5px 0px 0px #000000',
+            'brutal-active': '1px 1px 0px 0px #000000',
+          },
+          borderWidth: {
+            '1.5': '1.5px',
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#dceeff] min-h-screen flex flex-col font-body text-[#000000] antialiased slush-canvas">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 bg-[#ffffff]/95 backdrop-blur-sm border-b-2 border-[#000000]">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-1.5 group">
+        <img src="logo.png" alt="Angkot Medan" class="w-20 h-20 object-contain" />
+        <div class="hidden sm:block">
+          <p class="font-display font-bold text-sm leading-none tracking-tight text-[#000000]">Angkot<span class="text-[#ffd731]">Medan</span></p>
+          <p class="font-body text-[10px] text-[#000]/40 leading-none mt-0.5 tracking-wide">FINDER</p>
+        </div>
+      </a>
+      <div class="flex items-center gap-1">
+        <span class="inline-flex items-center px-3 py-1 bg-[#4da2ff]/15 text-[#4da2ff] font-display font-bold text-[11px] border-2 border-[#4da2ff]/30 mr-3 rounded-pill">118</span>
+        <a href="/" class="nav-link px-3 py-1.5 font-display text-sm font-medium text-[#000]/50 hover:text-[#000000] transition-colors relative" data-i18n="nav_home">Beranda</a>
+        <a href="/tentang" class="nav-link px-3 py-1.5 font-display text-sm font-bold text-[#ffd731] transition-colors relative" data-i18n="nav_about">Tentang</a>
+        <div class="relative ml-1">
+          <button id="lang-toggle" class="flex items-center gap-1 px-2 py-1.5 rounded-lg border-2 border-[#000]/10 hover:border-[#000000] hover:bg-[#ffd731]/10 transition-all font-display text-xs font-bold text-[#000]/50">
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+            <span id="lang-label">ID</span>
+          </button>
+          <div id="lang-dropdown" class="hidden absolute right-0 top-full mt-1 bg-white border-2 border-[#000000] shadow-brutal rounded-lg overflow-hidden z-50 min-w-[120px] max-h-[300px] overflow-y-auto">
+            <button data-lang="id" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#ffd731]/10 flex items-center gap-2"><span>🇮🇩</span> Indonesia</button>
+            <button data-lang="en" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#4da2ff]/10 flex items-center gap-2"><span>🇺🇸</span> English</button>
+            <button data-lang="jv" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#55db9c]/10 flex items-center gap-2"><span>🎭</span> Jawa</button>
+            <button data-lang="ms" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#fb4903]/10 flex items-center gap-2"><span>🇲🇾</span> Melayu</button>
+            <button data-lang="btk" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#e9ccff]/10 flex items-center gap-2"><span>🏠</span> Batak</button>
+            <button data-lang="min" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#ffd731]/10 flex items-center gap-2"><span>🌾</span> Minang</button>
+            <button data-lang="su" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#4da2ff]/10 flex items-center gap-2"><span>🏔️</span> Sunda</button>
+            <button data-lang="ace" class="lang-option w-full text-left px-3 py-2 font-display text-xs font-bold hover:bg-[#e9ccff]/10 flex items-center gap-2"><span>🕌</span> Aceh</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ABOUT PAGE -->
+  <main class="pt-6 pb-20 flex-1">
+    <div class="max-w-5xl mx-auto px-4">
+
+      <section class="mb-14">
+        <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-[#000]/50 hover:text-[#000000] transition-colors mb-6 group">
+          <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i> <span data-i18n="about_back">Beranda</span>
+        </a>
+        <h1 class="font-display text-3xl md:text-4xl font-bold text-[#000000] tracking-tight mb-4">Tentang Angkot Medan Finder</h1>
+        <p class="font-body text-base text-[#000]/55 max-w-2xl leading-relaxed">
+          Medan punya sistem angkot yang kompleks: puluhan operator, ratusan trayek, ribuan halte. Tapi gak ada satu tempat pun yang nampilin semua rute secara jelas. Kami bikin solusinya.
+        </p>
+      </section>
+
+      <!-- THE PROBLEM -->
+      <section class="mb-14">
+        <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-8 md:p-10 rounded-2xl">
+          <div class="flex items-start gap-4 mb-8">
+            <div class="w-12 h-12 bg-[#fb4903]/10 border-2 border-[#fb4903]/20 rounded-full flex items-center justify-center shrink-0">
+              <i data-lucide="alert-triangle" class="w-6 h-6 text-[#fb4903]"></i>
+            </div>
+            <div>
+              <h2 class="font-display text-xl font-bold text-[#000000] mb-2" data-i18n="about_problem">Masalah Transit Medan</h2>
+              <p class="font-body text-sm text-[#000]/55 leading-relaxed" data-i18n="about_problem_desc">
+                Setiap hari, jutaan warga Medan naik angkot. Tapi mengetahui rute yang tepat dari A ke B masih jadi teka-teki. Tidak ada peta rute resmi, tidak ada aplikasi yang lengkap, dan informasi dari mulut ke mulut sering bikin salah turun.
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t-2 border-[#000]/8">
+            <div class="text-center p-3">
+              <p class="font-display text-3xl md:text-4xl font-black text-[#ffd731]" id="stat-routes">118</p>
+              <p class="font-body text-xs text-[#000]/40 mt-1">Trayek Tercatat</p>
+            </div>
+            <div class="text-center p-3">
+              <p class="font-display text-3xl md:text-4xl font-black text-[#4da2ff]" id="stat-stops">500+</p>
+              <p class="font-body text-xs text-[#000]/40 mt-1">Halte & Titik</p>
+            </div>
+            <div class="text-center p-3">
+              <p class="font-display text-3xl md:text-4xl font-black text-[#55db9c]" id="stat-operators">15</p>
+              <p class="font-body text-xs text-[#000]/40 mt-1">Operator Aktif</p>
+            </div>
+            <div class="text-center p-3">
+              <p class="font-display text-3xl md:text-4xl font-black text-[#fb4903]">4</p>
+              <p class="font-body text-xs text-[#000]/40 mt-1">Warna Livery</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="mt-16 mb-14">
+        <h2 class="font-display text-2xl font-bold text-[#000000] tracking-tight mb-8" data-i18n="about_how">Cara Kerja</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-6 rounded-2xl">
+            <div class="w-10 h-10 bg-[#ffd731] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-sm mb-5">1</div>
+            <h3 class="font-display text-base font-bold text-[#000000] mb-2" data-i18n="about_how1">Ketik Asal & Tujuan</h3>
+            <p class="font-body text-sm text-[#000]/55 leading-relaxed" data-i18n="about_how1_desc">Masukkan nama halte, jalan, atau landmark. Auto-suggest bantu kamu nemu nama yang tepat.</p>
+          </div>
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-6 rounded-2xl">
+            <div class="w-10 h-10 bg-[#4da2ff] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-sm text-[#ffffff] mb-5">2</div>
+            <h3 class="font-display text-base font-bold text-[#000000] mb-2" data-i18n="about_how2">Lihat Rute</h3>
+            <p class="font-body text-sm text-[#000]/55 leading-relaxed" data-i18n="about_how2_desc">Sistem cari rute langsung dan rute transfer. Tampilkan warna livery, nomor angkot, dan daftar halte.</p>
+          </div>
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-6 rounded-2xl">
+            <div class="w-10 h-10 bg-[#55db9c] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-sm text-[#ffffff] mb-5">3</div>
+            <h3 class="font-display text-base font-bold text-[#000000] mb-2" data-i18n="about_how3">Naik Angkot</h3>
+            <p class="font-body text-sm text-[#000]/55 leading-relaxed" data-i18n="about_how3_desc">Kenali angkot dari warna livery dan nomor trayek yang tertera di badan kendaraan.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLOR LEGEND -->
+      <section class="mt-16 mb-14">
+        <h2 class="font-display text-2xl font-bold text-[#000000] tracking-tight mb-8" data-i18n="about_livery">Panduan Warna Livery</h2>
+        <p class="font-body text-sm text-[#000]/50 mb-6 max-w-xl" data-i18n="about_livery_desc">Warna livery di badan angkot menunjukkan operator atau kelompok trayek. Kenali warnanya biar gak salah naik.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-5 flex items-start gap-4 rounded-2xl">
+            <div class="w-14 h-14 bg-[#ffd731] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-lg text-[#000000] shrink-0">K</div>
+            <div>
+              <p class="font-display text-sm font-bold text-[#000000] mb-1">Kuning Emas</p>
+              <p class="font-body text-xs text-[#000]/50 leading-relaxed">Operator terbesar: KPUM, Angkot Umum, Wampu Mini. Mayoritas trayek di kota.</p>
+            </div>
+          </div>
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-5 flex items-start gap-4 rounded-2xl">
+            <div class="w-14 h-14 bg-[#4da2ff] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-lg text-[#ffffff] shrink-0">B</div>
+            <div>
+              <p class="font-display text-sm font-bold text-[#000000] mb-1">Biru Laut</p>
+              <p class="font-body text-xs text-[#000]/50 leading-relaxed">Medan Bus dan Nasional Medan Transport. Trayek koridor utama.</p>
+            </div>
+          </div>
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-5 flex items-start gap-4 rounded-2xl">
+            <div class="w-14 h-14 bg-[#55db9c] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-lg text-[#ffffff] shrink-0">H</div>
+            <div>
+              <p class="font-display text-sm font-bold text-[#000000] mb-1">Hijau Daun</p>
+              <p class="font-body text-xs text-[#000]/50 leading-relaxed">Medan Mars, Medan Morina. Trayek perifer dan pinggiran kota.</p>
+            </div>
+          </div>
+          <div class="bg-[#ffffff] border-2 border-[#000000] shadow-brutal p-5 flex items-start gap-4 rounded-2xl">
+            <div class="w-14 h-14 bg-[#fb4903] border-2 border-[#000000] shadow-brutal-sm rounded-full flex items-center justify-center font-display font-black text-lg text-[#ffffff] shrink-0">M</div>
+            <div>
+              <p class="font-display text-sm font-bold text-[#000000] mb-1">Merah</p>
+              <p class="font-body text-xs text-[#000]/50 leading-relaxed">RMC (Rahayu Medan Ceria) dan Mitra Transport. Trayek lintas kota.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DATA NOTE -->
+      <section class="mt-16 mb-14">
+        <div class="bg-[#000000] text-[#ffffff] border-2 border-[#000000] p-6 md:p-8 rounded-2xl">
+          <div class="flex items-start gap-4">
+            <i data-lucide="database" class="w-6 h-6 text-[#ffd731] shrink-0 mt-0.5"></i>
+            <div>
+              <h3 class="font-display text-base font-bold mb-2" data-i18n="about_data">Tentang Data</h3>
+              <p class="font-body text-sm text-[#ffffff]/60 leading-relaxed" data-i18n="about_data_desc">
+                Data 118 trayek angkot dikumpulkan dari berbagai sumber publik, papan informasi halte, dan konfirmasi komunitas pengguna angkot di Medan. Data bisa berubah sewaktu-waktu karena trayek angkot sering disesuaikan oleh operator. Kalau kamu nemu data yang salah atau trayek baru, silakan hubungi kami.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t-2 border-[#000000] mt-auto bg-[#000000] text-[#ffffff]">
+    <div class="max-w-5xl mx-auto px-4 pt-10 pb-6">
+      <!-- Top row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <!-- Brand -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-[#4da2ff] border-2 border-[#ffffff]/20 rounded-xl flex items-center justify-center">
+              <svg viewBox="0 0 40 40" class="w-7 h-7" fill="none"><rect x="4" y="11" width="32" height="15" rx="5" fill="#000000"/><rect x="7" y="13" width="9" height="7" rx="2.5" fill="#4da2ff"/><rect x="19" y="13" width="9" height="7" rx="2.5" fill="#4da2ff"/><circle cx="11" cy="28" r="3.5" fill="#000000"/><circle cx="29" cy="28" r="3.5" fill="#000000"/><circle cx="11" cy="28" r="1.5" fill="#4da2ff"/><circle cx="29" cy="28" r="1.5" fill="#4da2ff"/><rect x="30" y="16" width="4" height="3" rx="1" fill="#ffd731"/></svg>
+            </div>
+            <div>
+              <p class="font-display text-sm font-bold">Angkot <span class="text-[#ffd731]">Medan</span></p>
+              <p class="font-body text-[10px] text-[#ffffff]/40">FINDER</p>
+            </div>
+          </div>
+          <p class="font-body text-xs text-[#ffffff]/40 leading-relaxed max-w-xs">Cari rute angkot di Medan dengan mudah. Gratis, cepat, dan akurat untuk semua warga Medan.</p>
+        </div>
+
+        <!-- Stats -->
+        <div>
+          <h4 class="font-display text-xs font-bold text-[#ffd731] uppercase tracking-wider mb-4">Data</h4>
+          <ul class="space-y-2.5">
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#ffd731]"></span> 118 Trayek
+            </li>
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#4da2ff]"></span> 500+ Halte
+            </li>
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#55db9c]"></span> 15+ Operator
+            </li>
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#fb4903]"></span> 4 Warna Livery
+            </li>
+          </ul>
+        </div>
+
+        <!-- Livery Colors -->
+        <div>
+          <h4 class="font-display text-xs font-bold text-[#4da2ff] uppercase tracking-wider mb-4">Livery</h4>
+          <ul class="space-y-2.5">
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-5 h-3 rounded-sm bg-[#ffd731] border border-[#ffffff]/20"></span> Kuning
+            </li>
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-5 h-3 rounded-sm bg-[#4da2ff] border border-[#ffffff]/20"></span> Biru
+            </li>
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-5 h-3 rounded-sm bg-[#55db9c] border border-[#ffffff]/20"></span> Hijau
+            </li>
+            <li class="flex items-center gap-2 font-body text-sm text-[#ffffff]/50">
+              <span class="w-5 h-3 rounded-sm bg-[#fb4903] border border-[#ffffff]/20"></span> Merah
+            </li>
+          </ul>
+        </div>
+
+        <!-- Info -->
+        <div>
+          <h4 class="font-display text-xs font-bold text-[#55db9c] uppercase tracking-wider mb-4">Informasi</h4>
+          <ul class="space-y-2.5">
+            <li class="font-body text-sm text-[#ffffff]/50">Data dari komunitas</li>
+            <li class="font-body text-sm text-[#ffffff]/50">Bukan resmi Dishub</li>
+            <li class="font-body text-sm text-[#ffffff]/50">Open source</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-[#ffffff]/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-[11px] text-[#ffffff]/30">&copy; 2026 Angkot Medan Finder. Dibuat untuk komunitas Medan.</p>
+        <div class="flex items-center gap-3">
+        
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Stats
+      const statRoutes = document.getElementById('stat-routes');
+      if (statRoutes && typeof ANGKOT_ROUTES !== 'undefined') {
+        statRoutes.textContent = ANGKOT_ROUTES.length;
+      }
+      const statStops = document.getElementById('stat-stops');
+      if (statStops && typeof ALL_STOPS !== 'undefined') {
+        statStops.textContent = ALL_STOPS.length + '+';
+      }
+      const statOperators = document.getElementById('stat-operators');
+      if (statOperators && typeof ANGKOT_ROUTES !== 'undefined') {
+        statOperators.textContent = [...new Set(ANGKOT_ROUTES.map(r => r.operator))].length;
+      }
+    });
+  </script>
+</body>
+</html>
