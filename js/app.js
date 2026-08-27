@@ -807,9 +807,9 @@ function renderDirectCard(result) {
 
           <!-- ORIGIN -->
           <div class="relative pb-8">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10 shrink-0"></div>
-            <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div class="ml-1">
+            <div class="absolute left-[-16px] top-[1px] w-8 h-8 rounded-full bg-[#55db9c] border-2 border-[#000000] z-10 shrink-0"></div>
+            <div class="absolute left-[-1px] top-[33px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div class="ml-7">
               <p class="font-display text-[10px] font-bold text-[#55db9c] uppercase tracking-widest mb-1.5">Naik di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${originStop}</p>
             </div>
@@ -817,11 +817,11 @@ function renderDirectCard(result) {
 
           <!-- JOURNEY -->
           <div class="relative pb-8">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center shrink-0" style="background:${livery.hex}">
+            <div class="absolute left-[-16px] top-[1px] w-8 h-8 rounded-full border-2 border-[#000000] z-10 flex items-center justify-center shrink-0" style="background:${livery.hex}">
               <span class="font-display font-black text-[8px] leading-none ${route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${route.nomor}</span>
             </div>
-            <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div class="ml-1">
+            <div class="absolute left-[-1px] top-[33px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div class="ml-7">
               <p class="font-body text-xs text-[#000]/70 mb-1.5">Naik <strong class="text-[#000000]">Angkot ${route.nomor}</strong> selama <strong class="text-[#000]">${totalStops} halte</strong></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed">
                 Langsung dari <strong class="text-[#000]">${originStop}</strong> ke <strong class="text-[#000]">${destStop}</strong> tanpa pindah.
@@ -831,10 +831,10 @@ function renderDirectCard(result) {
 
           <!-- DESTINATION -->
           <div class="relative">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center shrink-0">
+            <div class="absolute left-[-16px] top-[1px] w-8 h-8 rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center shrink-0">
               <i data-lucide="flag" class="w-3 h-3 text-white"></i>
             </div>
-            <div class="ml-1">
+            <div class="ml-7">
               <p class="font-display text-[10px] font-bold text-[#fb4903] uppercase tracking-widest mb-1">Turun di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${destStop}</p>
             </div>
@@ -890,8 +890,8 @@ function renderTransferCard(result) {
         <div class="flex gap-3">
 
           <!-- Timeline Line -->
-          <div class="flex flex-col items-center shrink-0 w-6">
-            <div class="w-5 h-5 rounded-full bg-[#55db9c] border-2 border-[#000000] flex items-center justify-center shrink-0"></div>
+          <div class="flex flex-col items-center shrink-0 w-7">
+            <div class="w-7 h-7 rounded-full bg-[#55db9c] border-2 border-[#000000] flex items-center justify-center shrink-0"></div>
             <div class="w-[2px] flex-1 bg-[#000]/10"></div>
           </div>
 
@@ -905,8 +905,8 @@ function renderTransferCard(result) {
 
         <div class="flex gap-3">
 
-          <div class="flex flex-col items-center shrink-0 w-6">
-            <div class="w-5 h-5 rounded-full border-2 border-[#000000] flex items-center justify-center shrink-0" style="background:${l1.hex}">
+          <div class="flex flex-col items-center shrink-0 w-7">
+            <div class="w-7 h-7 rounded-full border-2 border-[#000000] flex items-center justify-center shrink-0" style="background:${l1.hex}">
               <span class="font-display font-black text-[7px] leading-none ${leg1.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg1.route.nomor}</span>
             </div>
             <div class="w-[2px] flex-1 bg-[#000]/10"></div>
@@ -927,8 +927,8 @@ function renderTransferCard(result) {
 
         <div class="flex gap-3">
 
-          <div class="flex flex-col items-center shrink-0 w-6">
-            <div class="w-6 h-6 rounded-full bg-[#ffd731] border-2 border-[#000000] flex items-center justify-center shrink-0">
+          <div class="flex flex-col items-center shrink-0 w-7">
+            <div class="w-7 h-7 rounded-full bg-[#ffd731] border-2 border-[#000000] flex items-center justify-center shrink-0">
               <i data-lucide="repeat" class="w-3 h-3 text-[#000000]"></i>
             </div>
             <div class="w-[2px] flex-1 bg-[#000]/10"></div>
@@ -944,8 +944,8 @@ function renderTransferCard(result) {
 
         <div class="flex gap-3">
 
-          <div class="flex flex-col items-center shrink-0 w-6">
-            <div class="w-5 h-5 rounded-full border-2 border-[#000000] flex items-center justify-center shrink-0" style="background:${l2.hex}">
+          <div class="flex flex-col items-center shrink-0 w-7">
+            <div class="w-7 h-7 rounded-full border-2 border-[#000000] flex items-center justify-center shrink-0" style="background:${l2.hex}">
               <span class="font-display font-black text-[7px] leading-none ${leg2.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg2.route.nomor}</span>
             </div>
             <div class="w-[2px] flex-1 bg-[#000]/10"></div>
@@ -966,8 +966,8 @@ function renderTransferCard(result) {
 
         <div class="flex gap-3">
 
-          <div class="flex flex-col items-center shrink-0 w-6">
-            <div class="w-5 h-5 rounded-full bg-[#fb4903] border-2 border-[#000000] flex items-center justify-center shrink-0">
+          <div class="flex flex-col items-center shrink-0 w-7">
+            <div class="w-7 h-7 rounded-full bg-[#fb4903] border-2 border-[#000000] flex items-center justify-center shrink-0">
               <i data-lucide="flag" class="w-2.5 h-2.5 text-white"></i>
             </div>
           </div>
@@ -1010,7 +1010,7 @@ async function renderCardMap(el) {
   // Wajib pastikan elemen card map punya tinggi CSS eksplisit
   el.style.height = "220px"; 
 
-  const map = L.map(el, { zoomControl: false, attributionControl: false, dragging: true, scrollWheelZoom: false });
+  const map = L.map(el, { zoomControl: true, attributionControl: false, dragging: true, scrollWheelZoom: true });
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", { maxZoom: 19 }).addTo(map);
 
   const straightLine = L.polyline(coords, { color: '#000000', weight: 4, opacity: 0.8 }).addTo(map);
