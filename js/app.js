@@ -1018,24 +1018,48 @@ function initApp() {
         return;
       }
       geolocBtn.classList.add("animate-pulse");
+      geolocBtn.disabled = true;
       navigator.geolocation.getCurrentPosition((pos) => {
         geolocBtn.classList.remove("animate-pulse");
+        geolocBtn.disabled = false;
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
+        const accuracy = pos.coords.accuracy;
         let best = null, bestDist = Infinity;
         if (typeof STOP_COORDS !== 'undefined') {
           for (const [name, coords] of Object.entries(STOP_COORDS)) {
-            const d = Math.sqrt((lat - coords[0]) ** 2 + (lng - coords[1]) ** 2);
+            const dLat = (lat - coords[0]) * 111;
+            const dLng = (lng - coords[1]) * 111 * Math.cos(lat * Math.PI / 180);
+            const d = Math.sqrt(dLat * dLat + dLng * dLng);
             if (d < bestDist) { bestDist = d; best = name; }
           }
         }
-        const nearest = best || "Kampus USU";
-        document.getElementById("origin-input").value = nearest;
-        document.getElementById("origin-resolved").value = nearest;
-      }, () => {
+        if (best && bestDist < 5) {
+          document.getElementById("origin-input").value = best;
+          document.getElementById("origin-resolved").value = best;
+          if (typeof showToast === "function") {
+            showToast(`Lokasi ditemukan: ${best} (${accuracy.toFixed(0)}m akurasi)`, "success");
+          }
+        } else if (best) {
+          document.getElementById("origin-input").value = best;
+          document.getElementById("origin-resolved").value = best;
+          if (typeof showToast === "function") {
+            showToast(`Lokasi terdekat: ${best} (${bestDist.toFixed(1)}km)`, "info");
+          }
+        } else {
+          document.getElementById("origin-input").value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+          document.getElementById("origin-resolved").value = "";
+        }
+      }, (err) => {
         geolocBtn.classList.remove("animate-pulse");
-        alert("Gagal mengambil lokasi GPS.");
-      });
+        geolocBtn.disabled = false;
+        let msg = "Gagal mengambil lokasi GPS.";
+        if (err.code === 1) msg = "Akses lokasi ditolak. Aktifkan izin lokasi di browser.";
+        else if (err.code === 2) msg = "Lokasi tidak tersedia. Coba di luar ruangan.";
+        else if (err.code === 3) msg = "Timeout GPS. Coba lagi.";
+        alert(msg);
+      }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 });
+    });
     });
   }
 
