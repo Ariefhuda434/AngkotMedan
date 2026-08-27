@@ -457,19 +457,6 @@ input:focus, button:focus-visible {
   cursor: pointer;
   position: relative;
 }
-.route-map-multi.map-expanded {
-  height: 65vh !important;
-  min-height: 300px;
-  position: fixed !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1500;
-  width: calc(100% - 2rem) !important;
-  max-width: 600px;
-  border-radius: 1rem;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-}
 .map-hint-label {
   position: absolute;
   bottom: 8px;
