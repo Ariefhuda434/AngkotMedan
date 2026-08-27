@@ -475,7 +475,6 @@ function renderResults() {
   const totalCount = direct.length + transfer.length;
   let html = "";
 
-  // Bagian judul dan info rute (TANPA tombol kembali ganda di sini)
   html += `
     <div class="mb-6 bg-white border-2 border-[#000000] shadow-brutal p-5 rounded-2xl">
       <div class="flex items-center gap-3 mb-2">
@@ -489,7 +488,35 @@ function renderResults() {
       </p>
     </div>
   `;
-  // ... (lanjutan kode render card berikutnya)
+
+  if (direct.length === 0 && transfer.length === 0) {
+    html += `
+      <div class="bg-white border-2 border-[#000000] shadow-brutal p-8 rounded-2xl text-center">
+        <div class="w-14 h-14 bg-[#fb4903]/10 border-2 border-[#fb4903]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="search-x" class="w-7 h-7 text-[#fb4903]"></i>
+        </div>
+        <h3 class="font-display text-lg font-bold text-[#000000] mb-2">Tidak Ada Rute</h3>
+        <p class="font-body text-sm text-[#000]/50 mb-5">Tidak ditemukan rute langsung maupun transfer dari <strong>${origin}</strong> ke <strong>${destination}</strong>.</p>
+        <button onclick="switchView('home')" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#ffd731] border-2 border-[#000000] shadow-brutal-sm rounded-pill font-display text-xs font-bold hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> <span data-i18n="btn_back">Kembali</span>
+        </button>
+      </div>`;
+  } else {
+    if (direct.length > 0) {
+      html += `<div class="mb-2"><h3 class="font-display text-sm font-bold text-[#000]/40 uppercase tracking-wider">Rute Langsung</h3></div>`;
+      direct.forEach(r => { html += renderDirectCard(r); });
+    }
+    if (transfer.length > 0) {
+      html += `<div class="mt-6 mb-2"><h3 class="font-display text-sm font-bold text-[#000]/40 uppercase tracking-wider">Rute Transfer</h3></div>`;
+      transfer.forEach(r => { html += renderTransferCard(r); });
+    }
+  }
+
+  container.innerHTML = html;
+  lucide.createIcons();
+  applyLang(currentLang);
+
+  container.querySelectorAll(".route-map").forEach(el => { renderCardMap(el); });
 }
 function renderDirectCard(result) {
   const { route, originStop, destStop, subWaypoints } = result;
