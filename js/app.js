@@ -778,27 +778,75 @@ function renderResults() {
 function renderDirectCard(result) {
   const { route, originStop, destStop, subWaypoints } = result;
   const livery = getLiveryColor(route.warna);
+  const totalStops = subWaypoints.length;
+
   return `
-    <div class="bg-white border-2 border-[#000000] shadow-brutal rounded-2xl overflow-hidden p-4 sm:p-6">
-      <div class="flex items-start gap-3 sm:gap-4 mb-4">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${livery.bg} ${livery.text} border-2 border-[#000000] font-display font-black text-base sm:text-lg flex items-center justify-center shadow-brutal-sm shrink-0">
-          ${route.nomor}
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="font-display text-sm font-bold text-[#000000]">Angkot ${route.nomor}</span>
-            <span class="text-[10px] font-display font-bold px-2 py-0.5 rounded-pill bg-[#000]/5">${livery.label}</span>
+    <div class="bg-white border-2 border-[#000000] shadow-brutal rounded-2xl overflow-hidden">
+      <div class="p-4 sm:p-6 pb-0">
+        <div class="flex items-start gap-3 sm:gap-4 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${livery.bg} ${livery.text} border-2 border-[#000000] font-display font-black text-base sm:text-lg flex items-center justify-center shadow-brutal-sm shrink-0">
+            ${route.nomor}
           </div>
-          <p class="font-body text-xs text-[#000]/50 truncate">${route.operator} • ${subWaypoints.length} halte</p>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-display text-sm font-bold text-[#000000]">Angkot ${route.nomor}</span>
+              <span class="text-[10px] font-display font-bold px-2 py-0.5 rounded-pill ${livery.bg} ${livery.text}">${livery.label}</span>
+            </div>
+            <p class="font-body text-xs text-[#000]/50">${route.operator} · ${totalStops} halte</p>
+          </div>
         </div>
       </div>
-      <div class="route-map w-full h-48 sm:h-56 border-2 border-[#000000] rounded-xl overflow-hidden mb-4" data-waypoints='${JSON.stringify(route.waypoints)}' data-origin="${originStop}" data-dest="${destStop}"></div>
-      <div class="bg-[#f0f7ff] border border-[#000]/10 rounded-xl p-3 sm:p-4 text-xs font-body text-[#000]/70 mb-4 leading-relaxed">
-        Naik dari <strong>${originStop}</strong>, turun langsung di <strong>${destStop}</strong> (${subWaypoints.length} halte).
+
+      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+        <div class="route-map w-full h-48 sm:h-56 border-2 border-[#000000] rounded-xl overflow-hidden mb-4" data-waypoints='${JSON.stringify(route.waypoints)}' data-origin="${originStop}" data-dest="${destStop}"></div>
       </div>
-      <button class="track-route-btn w-full py-3 bg-[#4da2ff] text-white font-display font-bold text-xs rounded-xl border-2 border-[#000000] shadow-brutal-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-brutal transition-all flex items-center justify-center gap-2" data-route='${JSON.stringify({ nomor: route.nomor, asal: originStop, tujuan: destStop, operator: route.operator, warna: route.warna, waypoints: route.waypoints })}'>
-        <i data-lucide="navigation" class="w-4 h-4"></i> <span data-i18n="btn_track">Lacak Rute Ini</span>
-      </button>
+
+      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+        <div class="relative pl-6 space-y-0">
+
+          <!-- ORIGIN -->
+          <div class="relative flex items-start gap-3 pb-4">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
+            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
+            <div class="ml-2">
+              <p class="font-display text-xs font-bold text-[#55db9c] uppercase tracking-wide mb-0.5">Naik di sini</p>
+              <p class="font-display text-sm font-bold text-[#000000]">${originStop}</p>
+            </div>
+          </div>
+
+          <!-- JOURNEY -->
+          <div class="relative flex items-start gap-3 pb-4">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${livery.hex}">
+              <span class="font-display font-black text-[7px] ${route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${route.nomor}</span>
+            </div>
+            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
+            <div class="ml-2">
+              <p class="font-body text-xs text-[#000]/70 mb-1">Naik <strong class="text-[#000000]">Angkot ${route.nomor}</strong> selama <strong class="text-[#000]">${totalStops} halte</strong></p>
+              <p class="font-body text-[11px] text-[#000]/50 leading-relaxed">
+                Langsung dari <strong class="text-[#000]">${originStop}</strong> ke <strong class="text-[#000]">${destStop}</strong> tanpa pindah.
+              </p>
+            </div>
+          </div>
+
+          <!-- DESTINATION -->
+          <div class="relative flex items-start gap-3">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
+              <i data-lucide="flag" class="w-2.5 h-2.5 text-white"></i>
+            </div>
+            <div class="ml-2">
+              <p class="font-display text-xs font-bold text-[#fb4903] uppercase tracking-wide mb-0.5">Turun di sini</p>
+              <p class="font-display text-sm font-bold text-[#000000]">${destStop}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+        <button class="track-route-btn w-full py-3 bg-[#4da2ff] text-white font-display font-bold text-xs rounded-xl border-2 border-[#000000] shadow-brutal-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-brutal transition-all flex items-center justify-center gap-2" data-route='${JSON.stringify({ nomor: route.nomor, asal: originStop, tujuan: destStop, operator: route.operator, warna: route.warna, waypoints: route.waypoints })}'>
+          <i data-lucide="navigation" class="w-4 h-4"></i> <span data-i18n="btn_track">Lacak Rute Ini</span>
+        </button>
+      </div>
     </div>
   `;
 }
@@ -807,27 +855,120 @@ function renderTransferCard(result) {
   const { leg1, leg2, transferStop } = result;
   const l1 = getLiveryColor(leg1.route.warna);
   const l2 = getLiveryColor(leg2.route.warna);
+
+  const leg1Stops = leg1.subWaypoints.length;
+  const leg2Stops = leg2.subWaypoints.length;
+
+  function stopsPreview(stops, max) {
+    if (stops.length <= max) return stops.map(s => `<span class="text-[#000]/40">${s}</span>`).join(' → ');
+    const first = stops.slice(0, 2);
+    const last = stops.slice(-1);
+    return [...first, `<span class="text-[#000]/30 italic">...${stops.length - 3} halte lagi</span>`, ...last].map(s => typeof s === 'string' && s.includes('...') ? s : `<span class="text-[#000]/40">${s}</span>`).join(' → ');
+  }
+
   return `
-    <div class="bg-white border-2 border-[#000000] shadow-brutal rounded-2xl overflow-hidden p-4 sm:p-6">
-      <div class="flex items-center gap-2 mb-4">
-        <div class="px-3 py-1 rounded-lg ${l1.bg} ${l1.text} border-2 border-[#000000] font-display font-black text-xs">#${leg1.route.nomor}</div>
-        <i data-lucide="arrow-right" class="w-4 h-4 text-[#000]/40"></i>
-        <div class="px-3 py-1 rounded-lg ${l2.bg} ${l2.text} border-2 border-[#000000] font-display font-black text-xs">#${leg2.route.nomor}</div>
-        <span class="ml-auto text-[10px] font-display font-bold bg-[#ffd731] text-[#000000] px-2.5 py-1 rounded-pill border-2 border-[#000000] shadow-brutal-sm">1x Pindah</span>
-      </div>
-      <div class="bg-[#f0f7ff] border border-[#000]/10 rounded-xl p-3 sm:p-4 text-xs font-body text-[#000]/70 mb-4 space-y-2">
-        <div class="flex items-start gap-2">
-          <span class="w-5 h-5 rounded-full bg-[#ffd731] border border-[#000] flex items-center justify-center font-display font-bold text-[10px] shrink-0">1</span>
-          <p>Naik <strong>#${leg1.route.nomor}</strong> dari <strong>${leg1.originStop}</strong> &rarr; turun & pindah di <strong>${transferStop}</strong>.</p>
-        </div>
-        <div class="flex items-start gap-2">
-          <span class="w-5 h-5 rounded-full bg-[#4da2ff] text-white border border-[#000] flex items-center justify-center font-display font-bold text-[10px] shrink-0">2</span>
-          <p>Sambung <strong>#${leg2.route.nomor}</strong> dari <strong>${transferStop}</strong> &rarr; turun di <strong>${leg2.destStop}</strong>.</p>
+    <div class="bg-white border-2 border-[#000000] shadow-brutal rounded-2xl overflow-hidden">
+      <div class="p-4 sm:p-6 pb-0">
+        <div class="flex items-center gap-2 mb-4 flex-wrap">
+          <div class="px-3 py-1 rounded-lg ${l1.bg} ${l1.text} border-2 border-[#000000] font-display font-black text-xs">#${leg1.route.nomor}</div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-[#000]/40"></i>
+          <div class="px-3 py-1 rounded-lg ${l2.bg} ${l2.text} border-2 border-[#000000] font-display font-black text-xs">#${leg2.route.nomor}</div>
+          <span class="ml-auto text-[10px] font-display font-bold bg-[#ffd731] text-[#000000] px-2.5 py-1 rounded-pill border-2 border-[#000000] shadow-brutal-sm">${leg1Stops + leg2Stops} halte · 1x pindah</span>
         </div>
       </div>
-      <button class="track-route-btn w-full py-3 bg-[#4da2ff] text-white font-display font-bold text-xs rounded-xl border-2 border-[#000000] shadow-brutal-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-brutal transition-all flex items-center justify-center gap-2" data-route='${JSON.stringify({ nomor: leg1.route.nomor + "+" + leg2.route.nomor, asal: leg1.originStop, tujuan: leg2.destStop, operator: leg1.route.operator + " + " + leg2.route.operator, warna: leg1.route.warna, waypoints: [...leg1.route.waypoints, ...leg2.route.waypoints] })}'>
-        <i data-lucide="navigation" class="w-4 h-4"></i> <span data-i18n="btn_track">Lacak Rute Ini</span>
-      </button>
+
+      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+        <div class="relative pl-6 space-y-0">
+
+          <!-- ORIGIN -->
+          <div class="relative flex items-start gap-3 pb-4">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
+            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
+            <div class="ml-2">
+              <p class="font-display text-xs font-bold text-[#55db9c] uppercase tracking-wide mb-0.5">Naik di sini</p>
+              <p class="font-display text-sm font-bold text-[#000000]">${leg1.originStop}</p>
+            </div>
+          </div>
+
+          <!-- LEG 1 -->
+          <div class="relative flex items-start gap-3 pb-4">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l1.hex}">
+              <span class="font-display font-black text-[7px] ${leg1.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg1.route.nomor}</span>
+            </div>
+            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
+            <div class="ml-2">
+              <div class="flex items-center gap-2 mb-1">
+                <p class="font-body text-xs text-[#000]/70">Naik <strong class="text-[#000000]">Angkot ${leg1.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l1.bg} ${l1.text} font-display font-bold">${l1.label}</span></p>
+              </div>
+              <p class="font-body text-[11px] text-[#000]/50 leading-relaxed mb-1.5">
+                Dari <strong class="text-[#000]">${leg1.originStop}</strong> → turun di <strong class="text-[#000]">${transferStop}</strong>
+              </p>
+              <div class="flex items-center gap-1 text-[10px] text-[#000]/35 font-body flex-wrap">
+                <i data-lucide="map-pin" class="w-3 h-3 shrink-0"></i>
+                <span>${leg1Stops} halte · ${leg1.route.operator}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRANSFER POINT -->
+          <div class="relative flex items-start gap-3 pb-4">
+            <div class="absolute left-[-2px] top-0 w-[16px] h-[16px] rounded-full bg-[#ffd731] border-2 border-[#000000] z-10 flex items-center justify-center">
+              <i data-lucide="repeat" class="w-2.5 h-2.5 text-[#000000]"></i>
+            </div>
+            <div class="absolute left-[5px] top-[16px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
+            <div class="ml-2">
+              <p class="font-display text-xs font-bold text-[#ffd731] uppercase tracking-wide mb-0.5">Pindah Angkot</p>
+              <p class="font-display text-sm font-bold text-[#000000]">${transferStop}</p>
+              <p class="font-body text-[11px] text-[#000]/50 mt-1">Turun dari <strong>#${leg1.route.nomor}</strong>, jalan kaki sebentar, lalu naik <strong>#${leg2.route.nomor}</strong></p>
+            </div>
+          </div>
+
+          <!-- LEG 2 -->
+          <div class="relative flex items-start gap-3 pb-4">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l2.hex}">
+              <span class="font-display font-black text-[7px] ${leg2.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg2.route.nomor}</span>
+            </div>
+            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
+            <div class="ml-2">
+              <div class="flex items-center gap-2 mb-1">
+                <p class="font-body text-xs text-[#000]/70">Naik <strong class="text-[#000000]">Angkot ${leg2.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l2.bg} ${l2.text} font-display font-bold">${l2.label}</span></p>
+              </div>
+              <p class="font-body text-[11px] text-[#000]/50 leading-relaxed mb-1.5">
+                Dari <strong class="text-[#000]">${transferStop}</strong> → turun di <strong class="text-[#000]">${leg2.destStop}</strong>
+              </p>
+              <div class="flex items-center gap-1 text-[10px] text-[#000]/35 font-body flex-wrap">
+                <i data-lucide="map-pin" class="w-3 h-3 shrink-0"></i>
+                <span>${leg2Stops} halte · ${leg2.route.operator}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESTINATION -->
+          <div class="relative flex items-start gap-3">
+            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
+              <i data-lucide="flag" class="w-2.5 h-2.5 text-white"></i>
+            </div>
+            <div class="ml-2">
+              <p class="font-display text-xs font-bold text-[#fb4903] uppercase tracking-wide mb-0.5">Turun di sini</p>
+              <p class="font-display text-sm font-bold text-[#000000]">${leg2.destStop}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+        <div class="bg-[#f0f7ff] border border-[#000]/10 rounded-xl p-3 text-[11px] font-body text-[#000]/55 leading-relaxed flex items-start gap-2">
+          <i data-lucide="info" class="w-3.5 h-3.5 text-[#4da2ff] shrink-0 mt-0.5"></i>
+          <span>Perjalanan total <strong class="text-[#000]">${leg1Stops + leg2Stops} halte</strong> dengan 1x pindah angkot. Estimasi waktu ±15–25 menit (bergantung lalu lintas).</span>
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
+        <button class="track-route-btn w-full py-3 bg-[#4da2ff] text-white font-display font-bold text-xs rounded-xl border-2 border-[#000000] shadow-brutal-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-brutal transition-all flex items-center justify-center gap-2" data-route='${JSON.stringify({ nomor: leg1.route.nomor + "+" + leg2.route.nomor, asal: leg1.originStop, tujuan: leg2.destStop, operator: leg1.route.operator + " + " + leg2.route.operator, warna: leg1.route.warna, waypoints: [...leg1.route.waypoints, ...leg2.route.waypoints] })}'>
+          <i data-lucide="navigation" class="w-4 h-4"></i> <span data-i18n="btn_track">Lacak Rute Ini</span>
+        </button>
+      </div>
     </div>
   `;
 }
