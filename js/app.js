@@ -332,7 +332,7 @@ const I18N = {
     btn_search: 'Milarian Rute',
     btn_my_location: 'Lokasi abdi',
     btn_track: 'Pantau Rute',
-    btn_stop_track: 'S新开传奇',
+    btn_stop_track: 'Eureun',
     btn_follow: 'Nutut',
     route_direct: 'Rute Langsung — Teu Pindah',
     route_transfer: 'Pindah 1 Kali',
@@ -1314,7 +1314,6 @@ function initApp() {
         else if (err.code === 3) msg = "Timeout GPS. Coba lagi.";
         alert(msg);
       }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 });
-    });
     });
   }
 
