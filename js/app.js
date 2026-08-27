@@ -656,9 +656,11 @@ async function upgradeToRoadGeometry(map, straightLine, coords) {
 }
 
 let currentView = "home";
+let previousView = "home";
 let searchResults = null;
 
 function switchView(view) {
+  if (view === "tracking") previousView = currentView;
   currentView = view;
   document.querySelectorAll("[data-view]").forEach(el => {
     const isActive = el.dataset.view === view;

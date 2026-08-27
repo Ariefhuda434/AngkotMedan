@@ -583,6 +583,8 @@ input:focus, button:focus-visible {
   .result-card .route-header { padding: 0.75rem 1rem; }
   .result-card .route-body { padding: 0.75rem 1rem; }
   .result-card .route-stops { padding: 0.75rem 1rem; }
+  footer .grid { gap: 1.5rem; }
+  footer [class*="grid-cols-1"] > div { min-width: 0; }
 }
 
 /* Extra small screens */
@@ -597,6 +599,7 @@ input:focus, button:focus-visible {
     min-height: 9rem !important;
   }
   h1 { text-wrap: balance; }
+  footer .max-w-5xl { padding-left: 1rem; padding-right: 1rem; }
 }
 
 /* Medium screens - tablets */
