@@ -245,15 +245,15 @@
 
           <div class="flex flex-col gap-4">
             <!-- ORIGIN -->
-            <div class="relative">
+            <div>
               <label for="origin-input" class="block font-display text-[11px] font-bold text-[#000]/40 uppercase tracking-widest mb-2" data-i18n="label_origin">Dari mana?</label>
               <div class="relative input-group">
                 <i data-lucide="map-pin" class="search-icon absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#000]/25 pointer-events-none"></i>
                 <input type="text" id="origin-input" data-i18n-placeholder="placeholder_origin" placeholder="Contoh: Bandara, Stasiun, Sun Plaza..."
-                  class="w-full pl-11 pr-4 py-3.5 bg-[#f0f7ff] border-2 border-[#000000] rounded-lg font-body text-sm text-[#000000] placeholder:text-[#000]/25 focus:outline-none focus:ring-0 focus:shadow-brutal focus:translate-x-[-2px] focus:translate-y-[-2px] transition-all"
+                  class="w-full pl-11 pr-4 py-3.5 bg-[#f0f7ff] border-2 border-[#000000] rounded-lg font-body text-sm text-[#000000] placeholder:text-[#000]/25 focus:outline-none focus:ring-0 focus:border-[#4da2ff] transition-all"
                   autocomplete="off">
                 <input type="hidden" id="origin-resolved" value="">
-                <div id="origin-suggestions" class="absolute z-40 top-full left-0 right-0 mt-1 bg-[#ffffff] border-2 border-[#000000] shadow-brutal hidden max-h-48 overflow-y-auto rounded-lg"></div>
+                <div id="origin-suggestions" class="absolute z-60 top-full left-0 right-0 mt-1 bg-[#ffffff] border-2 border-[#000000] shadow-brutal hidden max-h-48 overflow-y-auto rounded-lg"></div>
               </div>
             </div>
 
@@ -269,15 +269,15 @@
             </div>
 
             <!-- DESTINATION -->
-            <div class="relative">
+            <div>
               <label for="dest-input" class="block font-display text-[11px] font-bold text-[#000]/40 uppercase tracking-widest mb-2" data-i18n="label_dest">Mau ke mana?</label>
               <div class="relative input-group">
                 <i data-lucide="flag" class="search-icon absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#000]/25 pointer-events-none"></i>
                 <input type="text" id="dest-input" data-i18n-placeholder="placeholder_dest" placeholder="Contoh: USU, RS Adam Malik, Istana Maimun..."
-                  class="w-full pl-11 pr-4 py-3.5 bg-[#f0f7ff] border-2 border-[#000000] rounded-lg font-body text-sm text-[#000000] placeholder:text-[#000]/25 focus:outline-none focus:ring-0 focus:shadow-brutal focus:translate-x-[-2px] focus:translate-y-[-2px] transition-all"
+                  class="w-full pl-11 pr-4 py-3.5 bg-[#f0f7ff] border-2 border-[#000000] rounded-lg font-body text-sm text-[#000000] placeholder:text-[#000]/25 focus:outline-none focus:ring-0 focus:border-[#4da2ff] transition-all"
                   autocomplete="off">
                 <input type="hidden" id="dest-resolved" value="">
-                <div id="dest-suggestions" class="absolute z-40 top-full left-0 right-0 mt-1 bg-[#ffffff] border-2 border-[#000000] shadow-brutal hidden max-h-48 overflow-y-auto rounded-lg"></div>
+                <div id="dest-suggestions" class="absolute z-60 top-full left-0 right-0 mt-1 bg-[#ffffff] border-2 border-[#000000] shadow-brutal hidden max-h-48 overflow-y-auto rounded-lg"></div>
               </div>
             </div>
 
