@@ -1086,6 +1086,20 @@ function initApp() {
     document.getElementById("dest-resolved").value = qDest;
     performSearch();
   }
+
+  const navbar = document.getElementById("site-navbar");
+  if (navbar) {
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          navbar.style.boxShadow = window.scrollY > 4 ? "0 4px 20px rgba(0,0,0,0.12)" : "none";
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initApp);
