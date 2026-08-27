@@ -803,26 +803,26 @@ function renderDirectCard(result) {
       </div>
 
       <div class="px-4 sm:px-6 pb-5 sm:pb-6">
-        <div class="relative pl-10">
+        <div class="relative pl-[3.5rem]">
 
           <!-- ORIGIN -->
-          <div class="relative pb-7">
-            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
-            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div>
-              <p class="font-display text-[10px] font-bold text-[#55db9c] uppercase tracking-widest mb-1">Naik di sini</p>
+          <div class="relative pb-8">
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10 shrink-0"></div>
+            <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div class="ml-1">
+              <p class="font-display text-[10px] font-bold text-[#55db9c] uppercase tracking-widest mb-1.5">Naik di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${originStop}</p>
             </div>
           </div>
 
           <!-- JOURNEY -->
-          <div class="relative pb-7">
-            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${livery.hex}">
-              <span class="font-display font-black text-[7px] leading-none ${route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${route.nomor}</span>
+          <div class="relative pb-8">
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center shrink-0" style="background:${livery.hex}">
+              <span class="font-display font-black text-[8px] leading-none ${route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${route.nomor}</span>
             </div>
-            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div>
-              <p class="font-body text-xs text-[#000]/70 mb-1">Naik <strong class="text-[#000000]">Angkot ${route.nomor}</strong> selama <strong class="text-[#000]">${totalStops} halte</strong></p>
+            <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div class="ml-1">
+              <p class="font-body text-xs text-[#000]/70 mb-1.5">Naik <strong class="text-[#000000]">Angkot ${route.nomor}</strong> selama <strong class="text-[#000]">${totalStops} halte</strong></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed">
                 Langsung dari <strong class="text-[#000]">${originStop}</strong> ke <strong class="text-[#000]">${destStop}</strong> tanpa pindah.
               </p>
@@ -831,10 +831,10 @@ function renderDirectCard(result) {
 
           <!-- DESTINATION -->
           <div class="relative">
-            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center shrink-0">
               <i data-lucide="flag" class="w-3 h-3 text-white"></i>
             </div>
-            <div>
+            <div class="ml-1">
               <p class="font-display text-[10px] font-bold text-[#fb4903] uppercase tracking-widest mb-1">Turun di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${destStop}</p>
             </div>
@@ -889,13 +889,13 @@ function renderTransferCard(result) {
       </div>
 
       <div class="px-4 sm:px-6 pb-5 sm:pb-6">
-        <div class="relative pl-12">
+        <div class="relative pl-[3.5rem]">
 
           <!-- ORIGIN -->
           <div class="relative pb-8">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10 shrink-0"></div>
             <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div>
+            <div class="ml-1">
               <p class="font-display text-[10px] font-bold text-[#55db9c] uppercase tracking-widest mb-1.5">Naik di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${leg1.originStop}</p>
             </div>
@@ -903,11 +903,11 @@ function renderTransferCard(result) {
 
           <!-- LEG 1 -->
           <div class="relative pb-8">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l1.hex}">
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center shrink-0" style="background:${l1.hex}">
               <span class="font-display font-black text-[8px] leading-none ${leg1.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg1.route.nomor}</span>
             </div>
             <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div>
+            <div class="ml-1">
               <p class="font-body text-xs text-[#000]/70 mb-1.5">Naik <strong class="text-[#000000]">Angkot ${leg1.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l1.bg} ${l1.text} font-display font-bold">${l1.label}</span></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed mb-2">
                 Dari <strong class="text-[#000]">${leg1.originStop}</strong> → turun di <strong class="text-[#000]">${transferStop}</strong>
@@ -921,11 +921,11 @@ function renderTransferCard(result) {
 
           <!-- TRANSFER POINT -->
           <div class="relative pb-8">
-            <div class="absolute left-[-13px] top-[0px] w-[24px] h-[24px] rounded-full bg-[#ffd731] border-2 border-[#000000] z-10 flex items-center justify-center">
+            <div class="absolute left-[-13px] top-[0px] w-[24px] h-[24px] rounded-full bg-[#ffd731] border-2 border-[#000000] z-10 flex items-center justify-center shrink-0">
               <i data-lucide="repeat" class="w-3.5 h-3.5 text-[#000000]"></i>
             </div>
             <div class="absolute left-[-1px] top-[24px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div>
+            <div class="ml-1">
               <p class="font-display text-[10px] font-bold text-[#ffd731] uppercase tracking-widest mb-1.5">Pindah Angkot</p>
               <p class="font-display text-sm font-bold text-[#000000]">${transferStop}</p>
               <p class="font-body text-[11px] text-[#000]/50 mt-2 leading-relaxed">Turun dari <strong>#${leg1.route.nomor}</strong>, jalan kaki sebentar, lalu naik <strong>#${leg2.route.nomor}</strong></p>
@@ -934,11 +934,11 @@ function renderTransferCard(result) {
 
           <!-- LEG 2 -->
           <div class="relative pb-8">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l2.hex}">
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center shrink-0" style="background:${l2.hex}">
               <span class="font-display font-black text-[8px] leading-none ${leg2.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg2.route.nomor}</span>
             </div>
             <div class="absolute left-[-1px] top-[23px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
-            <div>
+            <div class="ml-1">
               <p class="font-body text-xs text-[#000]/70 mb-1.5">Naik <strong class="text-[#000000]">Angkot ${leg2.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l2.bg} ${l2.text} font-display font-bold">${l2.label}</span></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed mb-2">
                 Dari <strong class="text-[#000]">${transferStop}</strong> → turun di <strong class="text-[#000]">${leg2.destStop}</strong>
@@ -952,10 +952,10 @@ function renderTransferCard(result) {
 
           <!-- DESTINATION -->
           <div class="relative">
-            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
+            <div class="absolute left-[-12px] top-[1px] w-[22px] h-[22px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center shrink-0">
               <i data-lucide="flag" class="w-3 h-3 text-white"></i>
             </div>
-            <div>
+            <div class="ml-1">
               <p class="font-display text-[10px] font-bold text-[#fb4903] uppercase tracking-widest mb-1">Turun di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${leg2.destStop}</p>
             </div>
