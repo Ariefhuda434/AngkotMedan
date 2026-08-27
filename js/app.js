@@ -774,6 +774,7 @@ function renderResults() {
   applyLang(currentLang);
 
   container.querySelectorAll(".route-map").forEach(el => { renderCardMap(el); });
+  container.querySelectorAll(".route-map-multi").forEach(el => { renderTransferMap(el); });
 }
 function renderDirectCard(result) {
   const { route, originStop, destStop, subWaypoints } = result;
@@ -801,26 +802,26 @@ function renderDirectCard(result) {
         <div class="route-map w-full h-48 sm:h-56 border-2 border-[#000000] rounded-xl overflow-hidden mb-4" data-waypoints='${JSON.stringify(route.waypoints)}' data-origin="${originStop}" data-dest="${destStop}"></div>
       </div>
 
-      <div class="px-4 sm:px-6 pb-4 sm:pb-6">
-        <div class="relative pl-6 space-y-0">
+      <div class="px-4 sm:px-6 pb-5 sm:pb-6">
+        <div class="relative pl-10">
 
           <!-- ORIGIN -->
-          <div class="relative flex items-start gap-3 pb-4">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
-            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
-            <div class="ml-2">
-              <p class="font-display text-xs font-bold text-[#55db9c] uppercase tracking-wide mb-0.5">Naik di sini</p>
+          <div class="relative pb-7">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
+            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div>
+              <p class="font-display text-[10px] font-bold text-[#55db9c] uppercase tracking-widest mb-1">Naik di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${originStop}</p>
             </div>
           </div>
 
           <!-- JOURNEY -->
-          <div class="relative flex items-start gap-3 pb-4">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${livery.hex}">
-              <span class="font-display font-black text-[7px] ${route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${route.nomor}</span>
+          <div class="relative pb-7">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${livery.hex}">
+              <span class="font-display font-black text-[7px] leading-none ${route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${route.nomor}</span>
             </div>
-            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
-            <div class="ml-2">
+            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div>
               <p class="font-body text-xs text-[#000]/70 mb-1">Naik <strong class="text-[#000000]">Angkot ${route.nomor}</strong> selama <strong class="text-[#000]">${totalStops} halte</strong></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed">
                 Langsung dari <strong class="text-[#000]">${originStop}</strong> ke <strong class="text-[#000]">${destStop}</strong> tanpa pindah.
@@ -829,12 +830,12 @@ function renderDirectCard(result) {
           </div>
 
           <!-- DESTINATION -->
-          <div class="relative flex items-start gap-3">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
-              <i data-lucide="flag" class="w-2.5 h-2.5 text-white"></i>
+          <div class="relative">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
+              <i data-lucide="flag" class="w-3 h-3 text-white"></i>
             </div>
-            <div class="ml-2">
-              <p class="font-display text-xs font-bold text-[#fb4903] uppercase tracking-wide mb-0.5">Turun di sini</p>
+            <div>
+              <p class="font-display text-[10px] font-bold text-[#fb4903] uppercase tracking-widest mb-1">Turun di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${destStop}</p>
             </div>
           </div>
@@ -878,28 +879,39 @@ function renderTransferCard(result) {
       </div>
 
       <div class="px-4 sm:px-6 pb-4 sm:pb-6">
-        <div class="relative pl-6 space-y-0">
+        <div class="relative">
+          <div class="route-map-multi w-full h-44 sm:h-52 border-2 border-[#000000] rounded-xl overflow-hidden" 
+               data-waypoints='${JSON.stringify([...leg1.route.waypoints, ...leg2.route.waypoints])}' 
+               data-origin="${leg1.originStop}" 
+               data-dest="${leg2.destStop}"
+               data-transfer="${transferStop}"></div>
+          <button class="map-toggle-btn absolute top-2 right-2 z-[400] w-8 h-8 bg-white/90 border-2 border-[#000000] shadow-brutal-sm rounded-lg flex items-center justify-center hover:bg-[#ffd731]/20 transition-colors" onclick="toggleMapExpand(this)">
+            <i data-lucide="maximize-2" class="w-4 h-4 text-[#000000]"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="px-4 sm:px-6 pb-5 sm:pb-6">
+        <div class="relative pl-10">
 
           <!-- ORIGIN -->
-          <div class="relative flex items-start gap-3 pb-4">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
-            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
-            <div class="ml-2">
-              <p class="font-display text-xs font-bold text-[#55db9c] uppercase tracking-wide mb-0.5">Naik di sini</p>
+          <div class="relative pb-7">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full bg-[#55db9c] border-2 border-[#000000] z-10"></div>
+            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div>
+              <p class="font-display text-[10px] font-bold text-[#55db9c] uppercase tracking-widest mb-1">Naik di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${leg1.originStop}</p>
             </div>
           </div>
 
           <!-- LEG 1 -->
-          <div class="relative flex items-start gap-3 pb-4">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l1.hex}">
-              <span class="font-display font-black text-[7px] ${leg1.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg1.route.nomor}</span>
+          <div class="relative pb-7">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l1.hex}">
+              <span class="font-display font-black text-[7px] leading-none ${leg1.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg1.route.nomor}</span>
             </div>
-            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
-            <div class="ml-2">
-              <div class="flex items-center gap-2 mb-1">
-                <p class="font-body text-xs text-[#000]/70">Naik <strong class="text-[#000000]">Angkot ${leg1.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l1.bg} ${l1.text} font-display font-bold">${l1.label}</span></p>
-              </div>
+            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div>
+              <p class="font-body text-xs text-[#000]/70 mb-1">Naik <strong class="text-[#000000]">Angkot ${leg1.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l1.bg} ${l1.text} font-display font-bold">${l1.label}</span></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed mb-1.5">
                 Dari <strong class="text-[#000]">${leg1.originStop}</strong> → turun di <strong class="text-[#000]">${transferStop}</strong>
               </p>
@@ -911,28 +923,26 @@ function renderTransferCard(result) {
           </div>
 
           <!-- TRANSFER POINT -->
-          <div class="relative flex items-start gap-3 pb-4">
-            <div class="absolute left-[-2px] top-0 w-[16px] h-[16px] rounded-full bg-[#ffd731] border-2 border-[#000000] z-10 flex items-center justify-center">
-              <i data-lucide="repeat" class="w-2.5 h-2.5 text-[#000000]"></i>
+          <div class="relative pb-7">
+            <div class="absolute left-[-11px] top-[0px] w-[22px] h-[22px] rounded-full bg-[#ffd731] border-2 border-[#000000] z-10 flex items-center justify-center">
+              <i data-lucide="repeat" class="w-3 h-3 text-[#000000]"></i>
             </div>
-            <div class="absolute left-[5px] top-[16px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
-            <div class="ml-2">
-              <p class="font-display text-xs font-bold text-[#ffd731] uppercase tracking-wide mb-0.5">Pindah Angkot</p>
+            <div class="absolute left-[-1px] top-[22px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div>
+              <p class="font-display text-[10px] font-bold text-[#ffd731] uppercase tracking-widest mb-1">Pindah Angkot</p>
               <p class="font-display text-sm font-bold text-[#000000]">${transferStop}</p>
-              <p class="font-body text-[11px] text-[#000]/50 mt-1">Turun dari <strong>#${leg1.route.nomor}</strong>, jalan kaki sebentar, lalu naik <strong>#${leg2.route.nomor}</strong></p>
+              <p class="font-body text-[11px] text-[#000]/50 mt-1.5 leading-relaxed">Turun dari <strong>#${leg1.route.nomor}</strong>, jalan kaki sebentar, lalu naik <strong>#${leg2.route.nomor}</strong></p>
             </div>
           </div>
 
           <!-- LEG 2 -->
-          <div class="relative flex items-start gap-3 pb-4">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l2.hex}">
-              <span class="font-display font-black text-[7px] ${leg2.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg2.route.nomor}</span>
+          <div class="relative pb-7">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full border-2 border-[#000000] z-10 flex items-center justify-center" style="background:${l2.hex}">
+              <span class="font-display font-black text-[7px] leading-none ${leg2.route.warna === 'kuning' ? 'text-[#000]' : 'text-white'}">${leg2.route.nomor}</span>
             </div>
-            <div class="absolute left-[5px] top-[14px] w-[2px] h-[calc(100%)] bg-[#000]/10"></div>
-            <div class="ml-2">
-              <div class="flex items-center gap-2 mb-1">
-                <p class="font-body text-xs text-[#000]/70">Naik <strong class="text-[#000000]">Angkot ${leg2.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l2.bg} ${l2.text} font-display font-bold">${l2.label}</span></p>
-              </div>
+            <div class="absolute left-[-1px] top-[21px] w-[2px] h-[calc(100%-4px)] bg-[#000]/10"></div>
+            <div>
+              <p class="font-body text-xs text-[#000]/70 mb-1">Naik <strong class="text-[#000000]">Angkot ${leg2.route.nomor}</strong> <span class="text-[10px] px-1.5 py-0.5 rounded-pill ${l2.bg} ${l2.text} font-display font-bold">${l2.label}</span></p>
               <p class="font-body text-[11px] text-[#000]/50 leading-relaxed mb-1.5">
                 Dari <strong class="text-[#000]">${transferStop}</strong> → turun di <strong class="text-[#000]">${leg2.destStop}</strong>
               </p>
@@ -944,12 +954,12 @@ function renderTransferCard(result) {
           </div>
 
           <!-- DESTINATION -->
-          <div class="relative flex items-start gap-3">
-            <div class="absolute left-[-1px] top-0 w-[14px] h-[14px] rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
-              <i data-lucide="flag" class="w-2.5 h-2.5 text-white"></i>
+          <div class="relative">
+            <div class="absolute left-[-10px] top-[1px] w-5 h-5 rounded-full bg-[#fb4903] border-2 border-[#000000] z-10 flex items-center justify-center">
+              <i data-lucide="flag" class="w-3 h-3 text-white"></i>
             </div>
-            <div class="ml-2">
-              <p class="font-display text-xs font-bold text-[#fb4903] uppercase tracking-wide mb-0.5">Turun di sini</p>
+            <div>
+              <p class="font-display text-[10px] font-bold text-[#fb4903] uppercase tracking-widest mb-1">Turun di sini</p>
               <p class="font-display text-sm font-bold text-[#000000]">${leg2.destStop}</p>
             </div>
           </div>
@@ -1005,6 +1015,54 @@ async function renderCardMap(el) {
   }, 300);
 
   // Upgrade dengan OSRM road snapping jika ada jaringan
+  upgradeToRoadGeometry(map, straightLine, coords);
+}
+
+function toggleMapExpand(btn) {
+  const mapEl = btn.closest('.relative').querySelector('.route-map-multi');
+  if (!mapEl) return;
+  const isExpanded = mapEl.classList.toggle('map-expanded');
+  const icon = btn.querySelector('[data-lucide]');
+  if (icon) {
+    icon.setAttribute('data-lucide', isExpanded ? 'minimize-2' : 'maximize-2');
+    lucide.createIcons();
+  }
+  setTimeout(() => {
+    const leafletMap = mapEl._leaflet_map || Object.values(mapEl).find(v => v && v._zoom !== undefined);
+    if (leafletMap && leafletMap.invalidateSize) leafletMap.invalidateSize();
+  }, 350);
+}
+
+async function renderTransferMap(el) {
+  const waypoints = JSON.parse(el.dataset.waypoints || "[]");
+  const origin = el.dataset.origin;
+  const dest = el.dataset.dest;
+  const transfer = el.dataset.transfer;
+  const coords = waypoints.map(w => getStopCoords(w)).filter(Boolean);
+  
+  if (coords.length < 2) {
+    el.innerHTML = '<div class="flex items-center justify-center h-full text-xs text-[#000]/40 font-body">Peta tidak tersedia</div>';
+    return;
+  }
+
+  el.style.height = "220px";
+
+  const map = L.map(el, { zoomControl: false, attributionControl: false, dragging: true, scrollWheelZoom: false });
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", { maxZoom: 19 }).addTo(map);
+
+  const straightLine = L.polyline(coords, { color: '#000000', weight: 4, opacity: 0.8 }).addTo(map);
+  
+  const oCoord = getStopCoords(origin);
+  const dCoord = getStopCoords(dest);
+  const tCoord = getStopCoords(transfer);
+  if (oCoord) L.circleMarker(oCoord, { radius: 7, fillColor: '#55db9c', color: '#000000', weight: 2, fillOpacity: 1 }).addTo(map);
+  if (dCoord) L.circleMarker(dCoord, { radius: 7, fillColor: '#fb4903', color: '#000000', weight: 2, fillOpacity: 1 }).addTo(map);
+  if (tCoord) L.circleMarker(tCoord, { radius: 9, fillColor: '#ffd731', color: '#000000', weight: 2, fillOpacity: 1 }).addTo(map);
+
+  map.fitBounds(L.latLngBounds(coords), { padding: [30, 30] });
+  el._leaflet_map = map;
+
+  setTimeout(() => { map.invalidateSize(); }, 300);
   upgradeToRoadGeometry(map, straightLine, coords);
 }
 
